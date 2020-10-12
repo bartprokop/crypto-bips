@@ -10,7 +10,7 @@ class WordListTest {
 
     @Test
     void getM() {
-        final List<String> mnemonics = WordList.getM();
+        final List<String> mnemonics = WordList.english();
         assertEquals(2048, mnemonics.size());
         assertEquals("abandon", mnemonics.get(0));
         assertEquals("animal", mnemonics.get(72));
