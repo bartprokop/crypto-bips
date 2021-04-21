@@ -5,7 +5,9 @@ import dev.prokop.utils.ResourceUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.web3j.crypto.MnemonicUtils;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,5 +45,19 @@ class Bip39MnemonicTest {
         assertEquals(18, Bip39Mnemonic.generateMnemonic(new byte[192 / 8]).length);;
         assertEquals(21, Bip39Mnemonic.generateMnemonic(new byte[224 / 8]).length);;
         assertEquals(24, Bip39Mnemonic.generateMnemonic(new byte[256 / 8]).length);;
+    }
+
+    @Test
+    void competition() {
+        final SecureRandom secureRandom = new SecureRandom();
+        for(int i=0; i<1000; i++) {
+            byte[] seed = new byte[32];
+            secureRandom.nextBytes(seed);
+            String a = Arrays.toString(Bip39Mnemonic.generateMnemonic(seed));
+            a = a.replaceAll(",", "");
+            a = a.substring(1, a.length()-1);
+            System.out.println(a);
+            assertEquals(MnemonicUtils.generateMnemonic(seed), a);
+        }
     }
 }

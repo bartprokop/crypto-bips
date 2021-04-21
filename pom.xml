@@ -10,7 +10,7 @@
 
     <name>All the BIPs</name>
     <description>Bitcoin Improvement Proposal</description>
-    <url>https://github.com/prokop-dev/crypto-bips</url>
+    <url>https://github.com/bartprokop/crypto-bips</url>
 
     <licenses>
         <license>
@@ -28,7 +28,7 @@
     </developers>
     
     <scm>
-        <url>https://github.com/prokop-dev/crypto-bips</url>
+        <url>https://github.com/bartprokop/crypto-bips</url>
     </scm>
 
     <properties>
@@ -127,6 +127,11 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.7.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>crypto</artifactId>
+            <version>4.6.3</version>
         </dependency>
     </dependencies>
 </project>
