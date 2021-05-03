@@ -23,17 +23,9 @@ public class Bip39Mnemonic {
         this.secureRandom = secureRandom;
     }
 
-    public String[] generateMnemonic(final int size) {
-        if (size != 16) throw new IllegalArgumentException("Only 16 bytes allowed.");
-
-        final byte[] ent = new byte[size];
-        secureRandom.nextBytes(ent);
-        return generateMnemonic(ent);
-    }
-
     public static String[] generateMnemonic(final byte[] entropy) {
         final byte[] hash = sha256(entropy); // Hash the Entropy value
-        final int checksumLength = entropy.length*8/32;
+        final int checksumLength = entropy.length * 8 / 32;
         // Copy first 4 bits of Hash as Checksum
         boolean[] checksum = Arrays.copyOfRange(bytesToBits(hash), 0, checksumLength);
         // Add Checksum to the end of Entropy bits
@@ -44,7 +36,7 @@ public class Bip39Mnemonic {
 //        System.out.println(ENT_CS.length/8);
 //        System.out.println(ENT_CS.length/11);
 
-        final int noOfWords = ENT_CS.length/11;
+        final int noOfWords = ENT_CS.length / 11;
 
 
         // Split ENT_CS into groups of 11 bits and creates String array for
@@ -75,6 +67,13 @@ public class Bip39Mnemonic {
         return n;
     }
 
+    public static String combine(String[] strings) {
+        if (strings == null || strings.length == 0) return "";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : strings) stringBuilder.append(' ').append(s);
+        return stringBuilder.substring(1);
+    }
+
     public static byte[] PBKDF2(String mnemonic, String salt) {
         try {
             byte[] fixedSalt = ("mnemonic" + salt).getBytes(StandardCharsets.UTF_8);
@@ -84,6 +83,14 @@ public class Bip39Mnemonic {
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    public String[] generateMnemonic(final int size) {
+        if (size != 16) throw new IllegalArgumentException("Only 16 bytes allowed.");
+
+        final byte[] ent = new byte[size];
+        secureRandom.nextBytes(ent);
+        return generateMnemonic(ent);
     }
 
 }

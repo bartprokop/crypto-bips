@@ -19,4 +19,16 @@ public class WordList {
         return wordList;
     }
 
+    public static boolean isValidWord(String word) {
+        return wordList.contains(word);
+    }
+
+    public static boolean isValidMnemonic(String[] mnemonic) {
+        for (String word : mnemonic) {
+            if (!isValidWord(word))
+                return false;
+        }
+        return true;
+    }
+
 }

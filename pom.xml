@@ -5,7 +5,7 @@
 
     <groupId>dev.prokop.crypto</groupId>
     <artifactId>crypto-bips</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>All the BIPs</name>
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>dev.prokop.commons</groupId>
             <artifactId>java-army-knife</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
