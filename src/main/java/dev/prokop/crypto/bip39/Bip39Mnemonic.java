@@ -32,12 +32,7 @@ public class Bip39Mnemonic {
         boolean[] ENT_CS = Arrays.copyOf(bytesToBits(entropy), bytesToBits(entropy).length + checksum.length);
         System.arraycopy(checksum, 0, ENT_CS, bytesToBits(entropy).length, checksum.length);
 
-//        System.out.println(ENT_CS.length);
-//        System.out.println(ENT_CS.length/8);
-//        System.out.println(ENT_CS.length/11);
-
         final int noOfWords = ENT_CS.length / 11;
-
 
         // Split ENT_CS into groups of 11 bits and creates String array for
         // mnemonicWords
